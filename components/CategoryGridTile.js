@@ -1,6 +1,8 @@
 import { Text, View, Pressable, StyleSheet, Platform } from "react-native";
 
-function CategoryGridTile({ title, color }) {
+//* in this function in regards to onPress instead of writing calling it directly in the onpress prop -
+// we can use the onPress prop to call it in the parent component where the function is called(onSelect).
+function CategoryGridTile({ title, color, onSelect }) {
   return (
     <View style={styles.gridItem}>
       <Pressable
@@ -9,6 +11,7 @@ function CategoryGridTile({ title, color }) {
           styles.button,
           pressed ? styles.buttonPressed : null,
         ]}
+        onPress={onSelect}
       >
         <View style={[styles.innerContainer, { backgroundColor: color }]}>
           <Text style={styles.title}>{title}</Text>

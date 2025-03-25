@@ -1,0 +1,3 @@
+- for react navigation it comes with extra dependencies(don't forget)
+  React navigation is a component based library: it give you a bunch of components which allow you set up your navigation configuration.
+  - when using react navigation you need to create a navigation container but also the other supported navigators(pain)
