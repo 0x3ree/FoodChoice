@@ -21,7 +21,10 @@ import { CATEGORIES } from "../data/dummy-data";
 function CategoriesScreen({ navigation }) {
   function renderCategoryItem(itemData) {
     function pressHandler() {
-      navigation.navigate("MealsOverview");
+      navigation.navigate("MealsOverview", { categoryId: itemData.item.id }); //*(passing data between screens) here we are navigating to the MealsOverviewScreen and passing the categoryId as a parameter
+      // the first argument is the name of the screen we want to navigate to, the second argument is an object that holds the data we want to pass to the screen we are navigating to,
+      //  which is then destured ({navigation}which only happens when a screen is registered) in the target screen, that way we can access the data. We also have access to
+      // route prop which is an object that holds the data we passed to the screen it also only works when screen is registered.
     }
     return (
       <CategoryGridTile
