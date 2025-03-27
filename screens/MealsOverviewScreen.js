@@ -1,5 +1,5 @@
 import { View, StyleSheet, FlatList } from "react-native";
-import MealItem from "../components/mealItem";
+import MealItem from "../components/MealItem";
 import { MEALS } from "../data/dummy-data";
 
 function MealsOverviewScreen({ route }) {
@@ -10,7 +10,9 @@ function MealsOverviewScreen({ route }) {
   }); // we start by storing the data we want to display in a const, we are then filtering
   // the meals based on the category id. we then wan to return true if the category id is included in the categoryIds array of the mealItem.
   function renderMealItem(itemData) {
-    return <MealItem title={itemData.item.title} />;
+    return (
+      <MealItem title={itemData.item.title} image={itemData.item.imageUrl} />
+    );
   }
   return (
     <View>
