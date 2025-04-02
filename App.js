@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
+import MealDetailScreen from "./screens/MealDetailScreen";
 
 const StackScreens = createNativeStackNavigator(); // this is the navigator, it's an object with two -
 //  properteries, screen and navigator in other words it's an object with two properties,-
@@ -12,18 +13,35 @@ const StackScreens = createNativeStackNavigator(); // this is the navigator, it'
 export default function App() {
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
 
       <NavigationContainer>
-        <StackScreens.Navigator>
+        <StackScreens.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: "#ff0000" },
+            headerTintColor: "white",
+            contentStyle: { backgroundColor: "#000" },
+          }}
+        >
           <StackScreens.Screen
             name="MealCategories"
             component={CategoriesScreen}
+            options={{
+              title: "All Categories",
+            }}
           />
+          {/*in here the reason why we don't use the options prop to set title is because for ever other item we click it's the same title so we then set it dynamically which give each options we click a diff header title*/}
           <StackScreens.Screen
             name="MealsOverview"
             component={MealsOverviewScreen}
+            //   options={({ route, navigation }) => {
+            //   const catId = route.params.categoryId;
+            //    return {
+            //      title: catId,
+            //  }; // this  is one option we  use the navigation prop to set the title dynamically, but we will set the option in the component itself
+            //  }}
           />
+          <StackScreens.Screen name="MealDetail" component={MealDetailScreen} />
         </StackScreens.Navigator>
       </NavigationContainer>
     </>

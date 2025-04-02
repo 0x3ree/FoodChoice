@@ -9,7 +9,10 @@ import {
 function MealsItem({ title, imageUrl, duration, complexity, affordability }) {
   return (
     <View style={styles.mealItem}>
-      <Pressable>
+      <Pressable
+        android_ripple={{ color: "#ccc" }}
+        style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+      >
         <View style={styles.innerContainer}>
           <View>
             <Image source={{ uri: imageUrl }} style={styles.image} />
@@ -42,9 +45,9 @@ const styles = StyleSheet.create({
     elevation: 4,
     // overflow: Platform.OS === "android" ? "hidden" : "visible",
     // for ios
-    // shadowOpacity: 0.25,
+    // shadowOpacity: 0.35,
     //  shadowOffset: { width: 0, height: 2 },
-    //   shadowRadius: 8,
+    //   shadowRadius: 16,
   },
   image: {
     width: "100%",
@@ -61,6 +64,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 8,
     justifyContent: "center",
+  },
+  buttonPressed: {
+    // opacity: Platform.OS === "ios" ? 0.5 : null, // this is for ios
+    opacity: 0.5,
   },
   innerContainer: {
     // this is the container that holds the image and the text and the rounded corners disappeard on ios due to the overflow hidden
