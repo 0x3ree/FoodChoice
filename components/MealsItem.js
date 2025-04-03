@@ -6,25 +6,41 @@ import {
   StyleSheet,
   Platform,
 } from "react-native";
-function MealsItem({ title, imageUrl, duration, complexity, affordability }) {
+import { useNavigation } from "@react-navigation/native";
+import MealDetails from "./MealDetails";
+
+function MealsItem({
+  id,
+  title,
+  imageUrl,
+  duration,
+  complexity,
+  affordability,
+}) {
+  const navigation = useNavigation(); // this is a hook that allows us to access the navigation prop in a functional component. we can use it to navigate to other screens or to get the navigation prop in a functional component. we can also use it to get the route prop in a functional component.
+  function selectMealItemHandler() {
+    navigation.navigate("MealDetail", {
+      mealId: id,
+    }); // we put it in this function because we'd call it in the pressable component, earlier it was trigerring as soon as the screen is loaded and not when we click the button. we are passing the mealId as a parameter to the MealDetail screen so we can use it to fetch the data for that meal item.
+  }
+
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: "#ccc" }}
         style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+        onPress={selectMealItemHandler} // this is the function that will be called when the button is pressed. we are passing the function to the onPress prop of the Pressable component. we can also use the onPress prop to call it in the parent component where the function is called(onSelect).
       >
         <View style={styles.innerContainer}>
           <View>
             <Image source={{ uri: imageUrl }} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailsItem}>{duration}m</Text>
-            <Text style={styles.detailsItem}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.detailsItem}>
-              {affordability.toUpperCase()}
-            </Text>
-          </View>
+          <MealDetails
+            duration={duration}
+            complexity={complexity}
+            affordability={affordability}
+          />
         </View>
       </Pressable>
     </View>
@@ -59,12 +75,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 8,
   },
-  details: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 8,
-    justifyContent: "center",
-  },
+
   buttonPressed: {
     // opacity: Platform.OS === "ios" ? 0.5 : null, // this is for ios
     opacity: 0.5,
@@ -73,9 +84,5 @@ const styles = StyleSheet.create({
     // this is the container that holds the image and the text and the rounded corners disappeard on ios due to the overflow hidden
     borderRadius: 8,
     overflow: "hidden",
-  },
-  detailsItem: {
-    marginHorizontal: 4,
-    fontSize: 12,
   },
 });
