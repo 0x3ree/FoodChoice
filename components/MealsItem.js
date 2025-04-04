@@ -22,7 +22,8 @@ function MealsItem({
     navigation.navigate("MealDetail", {
       mealId: id,
     }); // we put it in this function because we'd call it in the pressable component, earlier it was trigerring as soon as the screen is loaded and not when we click the button. we are passing the mealId as a parameter to the MealDetail screen so we can use it to fetch the data for that meal item.
-  }
+  } // when the user interacts with the mealsItem the app navigates to the mealsdetailsscreen and includes the mealid in the route params object. this allows us to access the mealId in the MealDetail screen and use it to fetch the data for that meal item from the MEALS array in the dummy-data.js file. we can also use it to navigate to other screens or to get the navigation prop in a functional component. we can also use it to get the route prop in a functional component, but we are using it in the MealsOverview screen to get the categoryId passed from the CategoriesScreen.
+  //(s) we can also use it to navigate to other screens or to get the navigation prop in a functional component, but we are using it in the MealsItem component to navigate to the MealDetail screen. we can also use it to get the route prop in a functional component, but we are using it in the MealsOverview screen to get the categoryId passed from the CategoriesScreen.
 
   return (
     <View style={styles.mealItem}>
