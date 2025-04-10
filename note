@@ -53,3 +53,29 @@ fontWeight: "bold",
 textAlign: "center",
 },
 });
+
+_adding buttons to the header_- we have 3 ways(the ones taught in this tutorial)
+
+1. by adding options in the screen where it's registered {
+   options={ headerRight: () => {
+   return <Text> fav button </Text>, or <Button title="tap me!" onPress={}/>
+   }
+   }
+   } this way is only good if no interraction is needed, if interaction is needed then the second option is best, with the help of useLayout we are able to setOptions using the navigation
+
+- import useLayout from react-
+
+  2. function MealDetailScreen({ route, navigation }) {
+
+function HeaderButtonPressHandler(){
+console.log('pressed!!')
+}
+
+     useLayoutEffect(() => {
+     navigation.setOptions(
+     haderRight:() =>{
+     retuen <Button titlle="tap me!" onPress={ HeaderButtonPressHandler}>
+     }
+     )
+     }, [navigation, headerbuttonpresshandler])
+     }
