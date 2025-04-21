@@ -79,3 +79,7 @@ console.log('pressed!!')
      )
      }, [navigation, headerbuttonpresshandler])
      }
+
+when dealing with app wide state management it's often a practice to store your files in a store folder, when we createContext for an object we will use to createcontext (FavoriteContext)we write the firstletter in capslock this is because of when we want to use it or it's property as it turn out as a component later.
+the .provider allows us to "provide" a value(state or data) to all components that are wrapped inside it. (while the consume: is a way to 'consume' or access the value provided by the .provider.{though in modern react, we mostly use the useContext hook instead of consumer})
+\*to my understanding when in a functional component we useState to write the logic we use in context that's because the data we are managing can also be functions too

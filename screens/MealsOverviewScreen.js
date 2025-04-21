@@ -1,6 +1,5 @@
 import { useLayoutEffect } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
-import MealsItem from "../components/MealsItem";
+import MealsList from "../components/Mealslist/MealsList";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
 
 function MealsOverviewScreen({ route, navigation }) {
@@ -23,36 +22,9 @@ function MealsOverviewScreen({ route, navigation }) {
       title: categoryTitle,
     });
   }, [catId, navigation]); // we are using the useEffect hook to set the title of the screen based on the category id. we are using the find method to find the category object that matches the category id, and then we are setting the title of the screen to the title of that category. we earlier used just the navigation prop to set the title which showed some error due to it not being the proper way so we used useeffect but then it's slow and doesn't load properly so we use layouteffect.
-
-  function renderMealItem(itemData) {
-    const item = itemData.item;
-    const mealProps = {
-      id: item.id,
-      title: item.title,
-      imageUrl: item.imageUrl,
-      duration: item.duration,
-      complexity: item.complexity,
-      affordability: item.affordability,
-    };
-
-    return <MealsItem {...mealProps} />;
-  }
-  return (
-    <View>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={(item) => item.id}
-        renderItem={renderMealItem}
-      />
-    </View>
-  );
+  return <MealsList displayedmeals={displayedMeals} />;
 }
 
 export default MealsOverviewScreen;
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    padding: 16,
-  },
-});
+//const styles = StyleSheet.create({});

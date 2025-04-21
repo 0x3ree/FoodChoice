@@ -7,8 +7,7 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import MealDetails from "./MealDetails";
-
+import MealDetails from "../MealDetails"; // this is the component that shows the details of the meal item, we are passing the duration, complexity and affordability as props to this component. we can also use it to navigate to other screens or to get the navigation prop in a functional component. we can also use it to get the route prop in a functional component, but we are using it in the MealsOverview screen to get the categoryId passed from the CategoriesScreen.
 function MealsItem({
   id,
   title,
